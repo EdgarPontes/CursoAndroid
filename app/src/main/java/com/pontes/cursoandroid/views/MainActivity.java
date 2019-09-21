@@ -1,4 +1,4 @@
-package com.pontes.cursoandroid;
+package com.pontes.cursoandroid.views;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.animation.AlphaAnimation;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.pontes.cursoandroid.R;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
