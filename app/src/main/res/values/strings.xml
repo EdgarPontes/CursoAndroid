@@ -12,6 +12,11 @@
     <string name="expense_form_categories">Categoria</string>
     <string name="expense_form_consolidated">Consolidado</string>
     <string name="expense_title_action_bar">Adicionar nova despesa</string>
+    <string name="main_fragment_header">Resumo do mês</string>
+    <string name="main_fragment_expense">Gastos</string>
+    <string name="main_fragment_earning">Recebimentos</string>
+    <string name="main_fragment_economy">Economia</string>
+    <string name="coin">R$</string>
 
     <string-array name="expense_category">
         <item>Lazer</item>

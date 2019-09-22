@@ -22,6 +22,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.pontes.cursoandroid.R;
 import com.pontes.cursoandroid.controllers.ExpenseController;
 
@@ -118,9 +119,19 @@ public class ExpenseFormFragment extends Fragment implements View.OnClickListene
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.saveBtn){
-            getFieldData();
-            Toast.makeText(v.getContext(), "Despesa salva com sucesso", Toast.LENGTH_LONG).show();
-            backToHome();
+           if (!valueField.getText().toString().isEmpty() && !descriptionField.getText().toString().isEmpty()) {
+               getFieldData();
+               Toast.makeText(v.getContext(), "Despesa salva com sucesso", Toast.LENGTH_LONG).show();
+               backToHome();
+           }else{
+               Snackbar.make(v, "Nenhum dos campos pode se vazio...", Snackbar.LENGTH_LONG).setAction("OK",
+                       new View.OnClickListener() {
+                           @Override
+                           public void onClick(View v) {
+
+                           }
+                       }).show();
+           }
         }
     }
 
