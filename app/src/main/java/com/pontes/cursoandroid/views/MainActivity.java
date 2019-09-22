@@ -21,7 +21,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.fragmentContainer, new MainFragment()).commit();
+                .add(R.id.fragmentContainer, new ExpenseFormFragment()).commit();
+        //.add(R.id.fragmentContainer, new MainFragment()).commit();
 
         fabMain = findViewById(R.id.fabMain);
 
