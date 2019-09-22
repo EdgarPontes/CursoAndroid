@@ -2,6 +2,7 @@ package com.pontes.cursoandroid.models;
 
 import java.util.UUID;
 
+import io.realm.Realm;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 import io.realm.annotations.Required;
@@ -21,6 +22,16 @@ public class Expense extends RealmObject {
     private boolean consolidated;
 
     public Expense() {
+    }
+
+    public void save(){
+        Realm realm = Realm.getDefaultInstance();
+        realm.beginTransaction();
+
+        realm.copyToRealm(this);
+
+        realm.commitTransaction();
+        realm.close();
     }
 
     public Expense(String description, String category, double value, int day, int month, int year, boolean consolidated) {

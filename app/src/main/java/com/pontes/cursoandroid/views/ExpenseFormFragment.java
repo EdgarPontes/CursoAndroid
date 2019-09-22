@@ -7,24 +7,34 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.pontes.cursoandroid.R;
+import com.pontes.cursoandroid.controllers.ExpenseController;
 
 import java.util.Calendar;
 
-public class ExpenseFormFragment extends Fragment {
+public class ExpenseFormFragment extends Fragment implements View.OnClickListener{
 
+    private TextView valueField;
+    private TextView descriptionField;
+    private CheckBox consolidatedField;
     private Spinner categoriesList;
     private EditText dateField;
+    private Button saveBtn;
     private DatePickerDialog.OnDateSetListener dateListener;
 
     public ExpenseFormFragment() {
@@ -38,11 +48,18 @@ public class ExpenseFormFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_expense_form, container, false);
 
+        valueField = view.findViewById(R.id.valueField);
+        descriptionField = view.findViewById(R.id.descriptionField);
+        consolidatedField = view.findViewById(R.id.consolidatedField);
+        saveBtn = view.findViewById(R.id.saveBtn);
+
+
         categoriesList = view.findViewById(R.id.categoriesList);
         setCategorySpiner(view.getContext());
 
         dateField = view.findViewById(R.id.dateField);
         setDateField();
+        saveBtn.setOnClickListener(this);
 
         return view;
     }
@@ -98,4 +115,31 @@ public class ExpenseFormFragment extends Fragment {
         categoriesList.setAdapter(categoriesAdapter);
     }
 
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.saveBtn){
+            getFieldData();
+            Toast.makeText(v.getContext(), "Despesa salva com sucesso", Toast.LENGTH_LONG).show();
+            backToHome();
+        }
+    }
+
+    private void backToHome(){
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setShowHideAnimationEnabled(false);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(R.string.app_name);
+        getActivity().getSupportFragmentManager().
+                beginTransaction().
+                replace(R.id.fragmentContainer, new MainFragment()).
+                commit();
+    }
+
+    private void getFieldData() {
+        float value = Float.parseFloat(valueField.getText().toString());
+        String description = descriptionField.getText().toString();
+        String date = dateField.getText().toString();
+        String category = categoriesList.getSelectedItem().toString();
+        boolean consolidated = consolidatedField.isChecked();
+        ExpenseController.newExpense(value, description, date, category, consolidated);
+    }
 }
