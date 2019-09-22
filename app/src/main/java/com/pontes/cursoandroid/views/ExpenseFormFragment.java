@@ -2,6 +2,7 @@ package com.pontes.cursoandroid.views;
 
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ import java.util.Calendar;
 
 public class ExpenseFormFragment extends Fragment {
 
+    private Spinner categoriesList;
     private EditText dateField;
     private DatePickerDialog.OnDateSetListener dateListener;
 
@@ -36,16 +38,16 @@ public class ExpenseFormFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_expense_form, container, false);
 
-        Spinner categoriesList = view.findViewById(R.id.categoriesList);
+        categoriesList = view.findViewById(R.id.categoriesList);
+        setCategorySpiner(view.getContext());
 
-        ArrayAdapter<String> categoriesAdapter = new ArrayAdapter<String>(view.getContext(),
-                android.R.layout.simple_list_item_1,
-                getResources().getStringArray(R.array.expense_category)
-        );
+        dateField = view.findViewById(R.id.dateField);
+        setDateField();
 
-        categoriesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        categoriesList.setAdapter(categoriesAdapter);
+        return view;
+    }
 
+    private void setDateField() {
         Calendar cal = Calendar.getInstance();
 
         final int day = cal.get(Calendar.DAY_OF_MONTH);
@@ -53,11 +55,8 @@ public class ExpenseFormFragment extends Fragment {
         final int year = cal.get(Calendar.YEAR);
 
         String dateString = Integer.toString(day) + " / " +
-                            Integer.toString(month + 1) + " / " +
-                            Integer.toString(year);
-
-        dateField = view.findViewById(R.id.dateField);
-
+                Integer.toString(month + 1) + " / " +
+                Integer.toString(year);
         dateField.setText(dateString);
 
         dateField.setKeyListener(null);
@@ -67,7 +66,7 @@ public class ExpenseFormFragment extends Fragment {
             public void onClick(View v) {
                 DatePickerDialog dialog = new DatePickerDialog(
                         getContext(),
-                        android.R.style.Theme_DeviceDefault_Dialog_MinWidth,
+                        android.R.style.Theme_Holo_Light_Dialog_NoActionBar_MinWidth,
                         dateListener,
                         year,
                         month,
@@ -87,8 +86,16 @@ public class ExpenseFormFragment extends Fragment {
                 dateField.setText(dateString);
             }
         };
+    }
 
-        return view;
+    private void setCategorySpiner(Context context) {
+        ArrayAdapter<String> categoriesAdapter = new ArrayAdapter<String>(context,
+                android.R.layout.simple_list_item_1,
+                getResources().getStringArray(R.array.expense_category)
+        );
+
+        categoriesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        categoriesList.setAdapter(categoriesAdapter);
     }
 
 }

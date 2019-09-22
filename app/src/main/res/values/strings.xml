@@ -10,6 +10,7 @@
     <string name="expense_form_description">Descrição</string>
     <string name="expense_form_value">Valor</string>
     <string name="expense_form_categories">Categoria</string>
+    <string name="expense_title_action_bar">Adicionar nova despesa</string>
 
     <string-array name="expense_category">
         <item>Lazer</item>

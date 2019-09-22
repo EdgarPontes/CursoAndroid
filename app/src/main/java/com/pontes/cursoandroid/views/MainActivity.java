@@ -1,9 +1,11 @@
 package com.pontes.cursoandroid.views;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 
@@ -21,15 +23,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.fragmentContainer, new ExpenseFormFragment()).commit();
-        //.add(R.id.fragmentContainer, new MainFragment()).commit();
+                .add(R.id.fragmentContainer, new MainFragment()).commit();
 
         fabMain = findViewById(R.id.fabMain);
-
         fabMain.setOnClickListener(this);
 
         fabEarnings = findViewById(R.id.fabEarnings);
+
         fabExpenses = findViewById(R.id.fabExpenses);
+        fabExpenses.setOnClickListener(this);
 
         //ButterKnife.bind(this);
 
@@ -39,7 +41,38 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         if (v.getId() == R.id.fabMain){
             showHideFabs();
+        }else if (v.getId() == R.id.fabExpenses){
+            loadExpenses();
         }
+    }
+
+    private void loadExpenses() {
+        loadActionBar(R.string.expense_title_action_bar, true);
+        getSupportFragmentManager().beginTransaction()
+        .replace(R.id.fragmentContainer, new ExpenseFormFragment()).commit();
+        showHideFabs();
+    }
+
+    private void loadActionBar(int stringID, boolean isNotHome) {
+        getSupportActionBar().setTitle(stringID);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(isNotHome);
+        getSupportActionBar().setShowHideAnimationEnabled(isNotHome);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home){
+            backToHome();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void backToHome() {
+        loadActionBar(R.string.app_name, false);
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragmentContainer, new MainFragment())
+                .commit();
     }
 
     @SuppressLint("RestrictedApi")
@@ -50,15 +83,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         fabAnimation.setStartOffset(100);
 
         if (fabsHide) {
-            fabExpenses.setVisibility(View.VISIBLE);
-            fabEarnings.setVisibility(View.VISIBLE);
+            fabExpenses.setVisibility(View.INVISIBLE);
+            fabEarnings.setVisibility(View.INVISIBLE);
             fabExpenses.setAnimation(fabAnimation);
             fabEarnings.setAnimation(fabAnimation);
         }else{
             fabExpenses.clearAnimation();
             fabEarnings.clearAnimation();
-            fabExpenses.setVisibility(View.INVISIBLE);
-            fabEarnings.setVisibility(View.INVISIBLE);
+            fabExpenses.setVisibility(View.GONE);
+            fabEarnings.setVisibility(View.GONE);
         }
 
         fabsHide = !fabsHide;
