@@ -8,13 +8,25 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
+import android.widget.Button;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.pontes.cursoandroid.R;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
-    private FloatingActionButton fabMain, fabExpenses, fabEarnings;
+public class MainActivity extends AppCompatActivity {
+
+    @BindView(R.id.fabMain)
+    FloatingActionButton fabMain;
+    @BindView(R.id.fabEarnings)
+    FloatingActionButton fabEarnings;
+    @BindView(R.id.fabExpenses)
+    FloatingActionButton fabExpenses;
+
+    //private FloatingActionButton fabMain, fabExpenses, fabEarnings;
     private boolean fabsHide = true;
 
     @Override
@@ -22,28 +34,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        ButterKnife.bind(this);
+
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.fragmentContainer, new MainFragment()).commit();
 
-        fabMain = findViewById(R.id.fabMain);
-        fabMain.setOnClickListener(this);
-
-        fabEarnings = findViewById(R.id.fabEarnings);
-
-        fabExpenses = findViewById(R.id.fabExpenses);
-        fabExpenses.setOnClickListener(this);
-
-        //ButterKnife.bind(this);
-
     }
 
-    @Override
-    public void onClick(View v) {
-        if (v.getId() == R.id.fabMain){
-            showHideFabs();
-        }else if (v.getId() == R.id.fabExpenses){
-            loadExpenses();
-        }
+    @OnClick(R.id.fabMain)
+        public void fabMain(View view){
+        showHideFabs();
+    }
+    @OnClick(R.id.fabEarnings)
+    public void fabEarnings(View view){
+        loadEarnings();
+    }
+    @OnClick(R.id.fabExpenses)
+    public void fabExpenses(View view){
+        loadExpenses();
+    }
+
+    private void loadEarnings() {
+        loadActionBar(R.string.earning_form_header, true);
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragmentContainer, new EarningsFormFragment()).commit();
+        showHideFabs();
     }
 
     private void loadExpenses() {
