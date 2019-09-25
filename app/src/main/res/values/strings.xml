@@ -3,6 +3,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
     <string name="expense_form_header">Nova despesa</string>
     <string name="expense_form_date">Data</string>
     <string name="expense_form_save">Salvar</string>
@@ -11,18 +12,29 @@
     <string name="expense_form_value">Valor</string>
     <string name="expense_form_categories">Categoria</string>
     <string name="expense_form_consolidated">Consolidado</string>
+
     <string name="expense_title_action_bar">Adicionar nova despesa</string>
+    <string name="earning_title_action_bar">Adicionar novo ganho</string>
+
     <string name="main_fragment_header">Resumo do mês</string>
     <string name="main_fragment_expense">Gastos</string>
     <string name="main_fragment_earning">Recebimentos</string>
     <string name="main_fragment_economy">Economia</string>
+
     <string name="coin">R$</string>
+
+    <string name="earning_form_header">Novo ganho</string>
 
     <string-array name="expense_category">
         <item>Lazer</item>
         <item>Energia</item>
         <item>Internet</item>
         <item>Agua</item>
+    </string-array>
+
+    <string-array name="earning_category">
+        <item>Salário</item>
+        <item>Empréstimo</item>
     </string-array>
 
 </resources>

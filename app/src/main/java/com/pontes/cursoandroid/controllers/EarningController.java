@@ -1,21 +1,19 @@
 package com.pontes.cursoandroid.controllers;
 
 import com.pontes.cursoandroid.helpers.ConvertDate;
-import com.pontes.cursoandroid.models.Expense;
-
+import com.pontes.cursoandroid.models.Earning;
 import java.util.Calendar;
 
 import io.realm.Realm;
 import io.realm.RealmResults;
 
-public class ExpenseController {
+public class EarningController {
+    public static void newEarning(float value, String description, String dateTXT, String category, boolean consolidated) {
+        Calendar date = ConvertDate.stringToDate(dateTXT);
 
-    public static void newExpense(float value, String description, String dateTEXT, String category, boolean consolidated){
-        Calendar date = ConvertDate.stringToDate(dateTEXT);
-
-        Expense expense = new Expense(description, category, value, date.get(Calendar.DAY_OF_MONTH),
+        Earning earning = new Earning(description, category, value, date.get(Calendar.DAY_OF_MONTH),
                 date.get(Calendar.MONTH) + 1, date.get(Calendar.YEAR), consolidated);
-        expense.save();
+        earning.save();
     }
 
     public static float getMonthTotal(){
@@ -27,13 +25,13 @@ public class ExpenseController {
         Realm realm = Realm.getDefaultInstance();
         realm.beginTransaction();
 
-        RealmResults<Expense> expenses = realm.where(Expense.class).
+        RealmResults<Earning> earnings = realm.where(Earning.class).
                 equalTo("month", month).
                 equalTo("year", year).
                 equalTo("consolidated", true).findAll();
 
-        for (int i = 0; i < expenses.size(); i++) {
-            total += expenses.get(i).getValue();
+        for (int i = 0; i < earnings.size(); i++) {
+            total += earnings.get(i).getValue();
         }
 
         realm.commitTransaction();

@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.pontes.cursoandroid.R;
+import com.pontes.cursoandroid.controllers.EarningController;
 import com.pontes.cursoandroid.controllers.ExpenseController;
 
 
@@ -33,8 +34,24 @@ public class MainFragment extends Fragment {
 
         TextView expensesTXT = view.findViewById(R.id.expenseTXT);
         float totalExpenses = ExpenseController.getMonthTotal();
-        String totalExpensesTXT = Float.toString(totalExpenses);
+        String totalExpensesTXT = String.format("%.2f", totalExpenses);
         expensesTXT.setText(getString(R.string.coin )+ " " + totalExpensesTXT);
+
+        TextView earningTXT = view.findViewById(R.id.earningTXT);
+        float totalEarning = EarningController.getMonthTotal();
+        String totalEarningTXT = String.format("%.2f", totalEarning);
+        earningTXT.setText(getString(R.string.coin )+ " " + totalEarningTXT);
+
+        TextView economyTXT = view.findViewById(R.id.economyTXT);
+        float totalEconomy = totalEarning - totalExpenses;
+        String totalEconomyTXT = String.format("%.2f", totalEconomy);
+        economyTXT.setText(getString(R.string.coin )+ " " +totalEconomyTXT);
+
+        if (totalEconomy > 0){
+            economyTXT.setTextColor(getResources().getColor(R.color.economyPositive));
+        }else if(totalEconomy < 0){
+            economyTXT.setTextColor(getResources().getColor(R.color.economyNegative));
+        }
 
         return view;
     }
