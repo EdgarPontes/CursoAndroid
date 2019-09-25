@@ -37,4 +37,12 @@
         <item>Empréstimo</item>
     </string-array>
 
+    <string name="drawer_menu_main">Principal</string>
+    <string name="drawer_menu_bank">Contas bancárias</string>
+    <string name="drawer_menu_card_credit">Cartão de crédito</string>
+    <string name="drawer_menu_invoices">Contas</string>
+    <string name="drawer_menu_installments">Parcelamentos</string>
+    <string name="drawer_menu_resumes">Relatórios</string>
+    <string name="drawer_header">Seja bem vindo</string>
+
 </resources>
