@@ -1,23 +1,28 @@
 package com.pontes.cursoandroid.views;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
-import android.widget.Button;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
 import com.pontes.cursoandroid.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     @BindView(R.id.fabMain)
     FloatingActionButton fabMain;
@@ -28,13 +33,28 @@ public class MainActivity extends AppCompatActivity {
 
     //private FloatingActionButton fabMain, fabExpenses, fabEarnings;
     private boolean fabsHide = true;
+    private Toolbar mToolbar;
+    private DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        NavigationView navigationView = findViewById(R.id.navigationMenu);
+        navigationView.setNavigationItemSelectedListener(this);
+        navigationView.bringToFront();
+
         ButterKnife.bind(this);
+
+        mToolbar = findViewById(R.id.mainToolbar);
+        setSupportActionBar(mToolbar);
+
+        drawerLayout = findViewById(R.id.drawer);
+        ActionBarDrawerToggle toogle = new ActionBarDrawerToggle(
+                this, drawerLayout, mToolbar, R.string.open_drawer, R.string.close_drawer);
+        drawerLayout.addDrawerListener(toogle);
+        toogle.syncState();
 
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.fragmentContainer, new MainFragment()).commit();
@@ -70,8 +90,14 @@ public class MainActivity extends AppCompatActivity {
 
     private void loadActionBar(int stringID, boolean isNotHome) {
         getSupportActionBar().setTitle(stringID);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(isNotHome);
-        getSupportActionBar().setShowHideAnimationEnabled(isNotHome);
+       /* getSupportActionBar().setDisplayHomeAsUpEnabled(isNotHome);
+        getSupportActionBar().setShowHideAnimationEnabled(isNotHome);*/
+    }
+
+    private void closeDrawer(){
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)){
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }
     }
 
     @Override
@@ -110,5 +136,24 @@ public class MainActivity extends AppCompatActivity {
         }
 
         fabsHide = !fabsHide;
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        switch (menuItem.getItemId()){
+            case R.id.drawer_menu_main:
+                backToHome();
+                break;
+            case R.id.drawer_menu_bank:
+                break;
+            case R.id.drawer_menu_credit:
+                break;
+            case R.id.drawer_menu_installments:
+                break;
+            case R.id.drawer_menu_invoices:
+                break;
+        }
+        closeDrawer();
+        return false;
     }
 }

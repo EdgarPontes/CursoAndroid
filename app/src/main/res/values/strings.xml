@@ -1,13 +1,16 @@
 <resources>
     <string name="app_name">CursoAndroid</string>
 
+    <string name="open_drawer">Abrindo o drawer</string>
+    <string name="close_drawer">Fechando o drawer</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="expense_form_header">Nova despesa</string>
     <string name="expense_form_date">Data</string>
     <string name="expense_form_save">Salvar</string>
-    <string name="expense_form_save_new">Salvar e Novo</string>
+    <string name="expense_form_save_new">Cancelar</string>
     <string name="expense_form_description">Descrição</string>
     <string name="expense_form_value">Valor</string>
     <string name="expense_form_categories">Categoria</string>

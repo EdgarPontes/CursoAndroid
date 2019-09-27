@@ -37,6 +37,7 @@ public class ExpenseFormFragment extends Fragment implements View.OnClickListene
     private EditText dateField;
     private Button saveBtn;
     private DatePickerDialog.OnDateSetListener dateListener;
+    private Button cancelBtn;
 
     public ExpenseFormFragment() {
         // Required empty public constructor
@@ -53,7 +54,8 @@ public class ExpenseFormFragment extends Fragment implements View.OnClickListene
         descriptionField = view.findViewById(R.id.descriptionField);
         consolidatedField = view.findViewById(R.id.consolidatedField);
         saveBtn = view.findViewById(R.id.saveBtn);
-
+        cancelBtn = view.findViewById(R.id.cancelBtn);
+        cancelBtn.setOnClickListener(this);
 
         categoriesList = view.findViewById(R.id.categoriesList);
         setCategorySpiner(view.getContext());
@@ -132,12 +134,14 @@ public class ExpenseFormFragment extends Fragment implements View.OnClickListene
                            }
                        }).show();
            }
+        }else if (v.getId() == R.id.cancelBtn){
+            backToHome();
         }
     }
 
     private void backToHome(){
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setShowHideAnimationEnabled(false);
+       /* ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setShowHideAnimationEnabled(false);*/
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(R.string.app_name);
         getActivity().getSupportFragmentManager().
                 beginTransaction().
