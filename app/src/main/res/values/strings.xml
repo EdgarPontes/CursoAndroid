@@ -28,24 +28,34 @@
 
     <string name="earning_form_header">Novo ganho</string>
 
+    <string name="drawer_menu_main">Principal</string>
+
+    <string name="drawer_menu_bank">Contas bancárias</string>
+
+    <string name="drawer_menu_card_credit">Cartão de crédito</string>
+    <string name="drawer_menu_invoices">Contas</string>
+    <string name="drawer_menu_installments">Parcelamentos</string>
+    <string name="drawer_menu_resumes">Relatórios</string>
+    <string name="drawer_header">Seja bem vindo</string>
+
+    <string name="no_bank_text">Você ainda não tem uma conta bancária cadastrada no aplicativo.</string>
+    <string name="no_bank_btn">Cadastre agora!</string>
+
+    <string name="bank_form_header">Adicionar conta bancária</string>
+    <string name="bank_form_name">Banco</string>
+    <string name="bank_form_owner">Titular da conta</string>
+    <string name="bank_from_current_balance">Saldo atual</string>
+    <string name="bank_form_agency">Agência</string>
+
     <string-array name="expense_category">
         <item>Lazer</item>
         <item>Energia</item>
         <item>Internet</item>
         <item>Agua</item>
     </string-array>
-
     <string-array name="earning_category">
         <item>Salário</item>
         <item>Empréstimo</item>
     </string-array>
-
-    <string name="drawer_menu_main">Principal</string>
-    <string name="drawer_menu_bank">Contas bancárias</string>
-    <string name="drawer_menu_card_credit">Cartão de crédito</string>
-    <string name="drawer_menu_invoices">Contas</string>
-    <string name="drawer_menu_installments">Parcelamentos</string>
-    <string name="drawer_menu_resumes">Relatórios</string>
-    <string name="drawer_header">Seja bem vindo</string>
 
 </resources>

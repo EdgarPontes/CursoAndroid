@@ -2,7 +2,6 @@ package com.pontes.cursoandroid.views;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
@@ -17,6 +16,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.pontes.cursoandroid.R;
+import com.pontes.cursoandroid.controllers.BankController;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     @OnClick(R.id.fabMain)
-        public void fabMain(View view){
+    public void fabMain(View view){
         showHideFabs();
     }
     @OnClick(R.id.fabEarnings)
@@ -145,6 +145,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 backToHome();
                 break;
             case R.id.drawer_menu_bank:
+                if (BankController.get() != null){
+                    getSupportFragmentManager().
+                            beginTransaction().
+                            replace(R.id.fragmentContainer, new BankInfoFragment()).
+                            commit();
+                }else {
+                    getSupportFragmentManager().
+                            beginTransaction().
+                            replace(R.id.fragmentContainer, new NoBankFragment()).
+                            commit();
+                }
                 break;
             case R.id.drawer_menu_credit:
                 break;
