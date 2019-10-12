@@ -21,6 +21,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
         android:layout_width="0dp"
         android:layout_height="191dp"
         android:layout_marginStart="8dp"
@@ -30,7 +31,7 @@
         app:contentPadding="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" >
+        app:layout_constraintTop_toBottomOf="@+id/textView6">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -146,4 +147,16 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView8" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
+
+    <fragment
+        android:id="@+id/fragment"
+        android:name="com.pontes.cursoandroid.views.BalanceCurrentFragment"
+        android:layout_width="400dp"
+        android:layout_height="269dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView"
+        app:layout_constraintVertical_bias="0.14"
+        tools:layout="@layout/fragment_balance_current" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -29,4 +29,36 @@ public class BankController {
 
         return info;
     }
+
+    public static double getBAlance(){
+        Bank bank = get();
+
+        if (bank != null){
+            return bank.getBalance();
+        }
+
+        return 0.0 ;
+    }
+
+    public static void deposit(double value){
+        Realm realm = Realm.getDefaultInstance();
+        realm.beginTransaction();
+
+        Bank bank = realm.where(Bank.class).findFirst();
+        bank.setBalance(bank.getBalance()+value);
+
+        realm.commitTransaction();
+        realm.close();
+    }
+
+    public static void withdraw(double value){
+        Realm realm = Realm.getDefaultInstance();
+        realm.beginTransaction();
+
+        Bank bank = realm.where(Bank.class).findFirst();
+        bank.setBalance(bank.getBalance()-value);
+
+        realm.commitTransaction();
+        realm.close();
+    }
 }

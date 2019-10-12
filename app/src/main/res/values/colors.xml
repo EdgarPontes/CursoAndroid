@@ -3,6 +3,6 @@
     <color name="colorPrimary">#002C85</color>
     <color name="colorPrimaryDark">#001357</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="economyPositive">#FF34A703</color>
+    <color name="economyPositive">#34A703</color>
     <color name="economyNegative">#FFB41220</color>
 </resources>

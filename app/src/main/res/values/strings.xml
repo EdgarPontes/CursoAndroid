@@ -24,7 +24,7 @@
     <string name="main_fragment_earning">Recebimentos</string>
     <string name="main_fragment_economy">Economia</string>
 
-    <string name="coin">R$</string>
+    <string name="coin">R$ </string>
 
     <string name="earning_form_header">Novo ganho</string>
 
@@ -46,6 +46,11 @@
     <string name="bank_form_owner">Titular da conta</string>
     <string name="bank_from_current_balance">Saldo atual</string>
     <string name="bank_form_agency">Agência</string>
+
+    <string name="current_balance_header">Saldo bancário:</string>
+    <string name="depositBtn">Deposito</string>
+    <string name="withdrawBtn">Saque</string>
+    <string name="dialogconfirm">confirmar</string>
 
     <string-array name="expense_category">
         <item>Lazer</item>
