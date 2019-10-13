@@ -62,6 +62,7 @@
     <string name="bill_form_header">Contas a pagar</string>
     <string name="bill_new_btn">Nova conta a pagar</string>
     <string name="bill_new_conta">Adicionar nova conta</string>
+    <string name="bill_item_pay">Pagar</string>
 
     <string-array name="expense_category">
         <item>Lazer</item>

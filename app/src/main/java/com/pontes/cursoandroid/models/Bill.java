@@ -99,4 +99,17 @@ public class Bill extends RealmObject {
     public void setPayed(boolean payed) {
         this.payed = payed;
     }
+
+    @Override
+    public String toString() {
+        return "Bill{" +
+                "codigo='" + codigo + '\'' +
+                ", description='" + description + '\'' +
+                ", day=" + day +
+                ", month=" + month +
+                ", year=" + year +
+                ", value=" + value +
+                ", payed=" + payed +
+                '}';
+    }
 }

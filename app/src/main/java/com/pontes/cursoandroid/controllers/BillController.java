@@ -3,7 +3,12 @@ package com.pontes.cursoandroid.controllers;
 import com.pontes.cursoandroid.helpers.ConvertDate;
 import com.pontes.cursoandroid.models.Bill;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
+
+import io.realm.Realm;
+import io.realm.RealmResults;
 
 public class BillController {
 
@@ -16,6 +21,34 @@ public class BillController {
                 value, false);
 
         bill.save();
+    }
+
+    public static List<Bill> getAll(){
+        List<Bill> billList = new ArrayList<Bill>();
+
+        Realm realm = Realm.getDefaultInstance();
+        realm.beginTransaction();
+
+        RealmResults<Bill> tmpList = realm.where(Bill.class).equalTo("payed", false).findAll();
+
+        for (int i = 0; i < tmpList.size(); i++){
+            Bill tmpBill = new Bill(
+              tmpList.get(i).getCodigo(),
+              tmpList.get(i).getDescription(),
+              tmpList.get(i).getDay(),
+              tmpList.get(i).getMonth(),
+              tmpList.get(i).getYear(),
+              tmpList.get(i).getValue(),
+              tmpList.get(i).isPayed()
+            );
+            billList.add(tmpBill);
+        }
+
+        realm.commitTransaction();
+        realm.close();
+
+        return billList;
+
     }
 
 

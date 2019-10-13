@@ -28,8 +28,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/expense_form_description"
-        android:inputType="textPersonName"
-        android:text="@string/expense_form_description" />
+        android:inputType="textPersonName" />
 
     <TextView
         android:id="@+id/textView26"
