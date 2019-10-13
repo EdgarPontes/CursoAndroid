@@ -17,6 +17,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.pontes.cursoandroid.R;
 import com.pontes.cursoandroid.controllers.BankController;
+import com.pontes.cursoandroid.controllers.CreditCardController;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -158,6 +159,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 }
                 break;
             case R.id.drawer_menu_credit:
+                if (CreditCardController.get() != null){
+                    getSupportFragmentManager().
+                            beginTransaction().
+                            replace(R.id.fragmentContainer, new CreditCardInfoFragment()).
+                            commit();
+                }else{
+                    getSupportFragmentManager().
+                            beginTransaction().
+                            replace(R.id.fragmentContainer, new NoCreditCardFragment()).
+                            commit();
+                }
                 break;
             case R.id.drawer_menu_installments:
                 break;

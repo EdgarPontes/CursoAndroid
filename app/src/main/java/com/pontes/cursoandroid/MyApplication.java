@@ -15,7 +15,7 @@ public class MyApplication extends Application {
 
         RealmConfiguration rc = new RealmConfiguration.Builder().name("cursoandroid.realm").build();
 
-        //Realm.deleteRealm(rc);
+        Realm.deleteRealm(rc);
 
         Realm.setDefaultConfiguration(rc);
     }

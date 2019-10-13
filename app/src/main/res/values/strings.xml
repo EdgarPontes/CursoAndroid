@@ -51,6 +51,14 @@
     <string name="depositBtn">Deposito</string>
     <string name="withdrawBtn">Saque</string>
     <string name="dialogconfirm">confirmar</string>
+    <string name="current_limit_credit_card">Limite disponivel</string>
+    <string name="credit_card_header">Cadastrar novo cartão</string>
+    <string name="credit_card_name">Bandeira</string>
+    <string name="credit_card_owner">Titular cartão</string>
+    <string name="credit_card_limit">Limite disponivel</string>
+    <string name="no_credit_card_text">Voceê ainda não cadastrou um cartão</string>
+    <string name="credit_card_change_limite">Manipular limite</string>
+    <string name="credit_card_reset_limit">Resetar limite</string>
 
     <string-array name="expense_category">
         <item>Lazer</item>
