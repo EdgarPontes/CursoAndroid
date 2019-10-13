@@ -171,9 +171,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             commit();
                 }
                 break;
-            case R.id.drawer_menu_installments:
-                break;
             case R.id.drawer_menu_invoices:
+                getSupportFragmentManager().
+                        beginTransaction().
+                        replace(R.id.fragmentContainer, new BillListFragment()).
+                        commit();
+                break;
+            case R.id.drawer_menu_installments:
                 break;
         }
         closeDrawer();

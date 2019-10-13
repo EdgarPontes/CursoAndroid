@@ -59,6 +59,9 @@
     <string name="no_credit_card_text">Voceê ainda não cadastrou um cartão</string>
     <string name="credit_card_change_limite">Manipular limite</string>
     <string name="credit_card_reset_limit">Resetar limite</string>
+    <string name="bill_form_header">Contas a pagar</string>
+    <string name="bill_new_btn">Nova conta a pagar</string>
+    <string name="bill_new_conta">Adicionar nova conta</string>
 
     <string-array name="expense_category">
         <item>Lazer</item>
