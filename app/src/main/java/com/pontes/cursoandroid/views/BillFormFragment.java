@@ -97,7 +97,7 @@ public class BillFormFragment extends Fragment {
         final int year = cal.get(Calendar.YEAR);
 
         String dateString = Integer.toString(day) + " / " +
-                Integer.toString(month + 1) + " / " +
+                Integer.toString(month+1) + " / " +
                 Integer.toString(year);
         billdateTXT.setText(dateString);
 

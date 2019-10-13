@@ -16,7 +16,7 @@ public class BillController {
         Calendar cDate = ConvertDate.stringToDate(date);
 
         Bill bill = new Bill(description, cDate.get(Calendar.DAY_OF_MONTH),
-                cDate.get(Calendar.MONTH+1),
+                cDate.get(Calendar.MONTH)+1,
                 cDate.get(Calendar.YEAR),
                 value, false);
 
@@ -51,5 +51,14 @@ public class BillController {
 
     }
 
+    public static void setPayed(String codigo){
+        Realm realm = Realm.getDefaultInstance();
+        realm.beginTransaction();
 
+        Bill bill = realm.where(Bill.class).equalTo("codigo", codigo).findFirst();
+        bill.setPayed(true);
+
+        realm.commitTransaction();
+        realm.close();
+    }
 }
