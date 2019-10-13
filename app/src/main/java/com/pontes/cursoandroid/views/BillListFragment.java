@@ -21,10 +21,8 @@ import butterknife.OnClick;
  */
 public class BillListFragment extends Fragment {
 
-    @BindView(R.id.billNewBTN)
-    Button billNewBTN;
-    /*@BindView(R.id.billCancelBTN)
-    Button billCancelBTN;*/
+    @BindView(R.id.billLisNewBTN)
+    Button billListNewBTN;
 
     public BillListFragment() {
         // Required empty public constructor
@@ -42,22 +40,12 @@ public class BillListFragment extends Fragment {
        return view;
     }
 
-    @OnClick(R.id.billNewBTN)
-    public void billNewBTN(){
+    @OnClick(R.id.billLisNewBTN)
+    public void billListNewBTN(){
         getActivity().
                 getSupportFragmentManager().
                 beginTransaction().
                 replace(R.id.fragmentContainer, new BillFormFragment()).
                 commit();
     }
-
-    /*@OnClick(R.id.billCancelBTN)
-    public void billCancelBTN(){
-        getActivity().
-                getSupportFragmentManager().
-                beginTransaction().
-                replace(R.id.fragmentContainer, new BillListFragment()).
-                commit();
-    }*/
-
 }

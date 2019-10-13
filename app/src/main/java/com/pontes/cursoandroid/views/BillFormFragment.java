@@ -8,14 +8,31 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.pontes.cursoandroid.R;
+import com.pontes.cursoandroid.controllers.BillController;
+import com.pontes.cursoandroid.helpers.ConvertDate;
+
+import java.util.Calendar;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class BillFormFragment extends Fragment {
 
+    @BindView(R.id.billNewBTN)
+    Button billNewBTN;
+    @BindView(R.id.billCancelBTN)
+    Button billCancelBTN;
+
+    TextView billdescriptionTXT, billvalueTXT, billdateTXT;
 
     public BillFormFragment() {
         // Required empty public constructor
@@ -26,7 +43,42 @@ public class BillFormFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_bill_form, container, false);
+        View view = inflater.inflate(R.layout.fragment_bill_form, container, false);
+
+        ButterKnife.bind(this, view);
+
+        billdescriptionTXT = view.findViewById(R.id.billDescription);
+        billvalueTXT       = view.findViewById(R.id.billvalueTXT);
+        billdateTXT        = view.findViewById(R.id.billdateTXT);
+
+        return view;
     }
 
+    public void getData(){
+        String description = billdescriptionTXT.getText().toString();
+        double value       = Double.parseDouble(billvalueTXT.getText().toString());
+        String date        = billdateTXT.getText().toString();
+
+        BillController.createNew(description, value, date);
+        Toast.makeText(getActivity().getApplicationContext(), "Conta criada", Toast.LENGTH_LONG).show();
+    }
+
+    @OnClick(R.id.billNewBTN)
+    public void billNewBTN(){
+        getData();
+        back();
+    }
+
+    @OnClick(R.id.billCancelBTN)
+    public void billCancelBTN(){
+        back();
+    }
+
+    private void back() {
+        getActivity().
+                getSupportFragmentManager().
+                beginTransaction().
+                replace(R.id.fragmentContainer, new BillListFragment()).
+                commit();
+    }
 }
