@@ -183,6 +183,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         replace(R.id.fragmentContainer, new InstallmentsListFragment()).
                         commit();
                 break;
+            case R.id.drawer_menu_resumes:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, new SheetFragment()).commit();
+                break;
         }
         closeDrawer();
         return false;

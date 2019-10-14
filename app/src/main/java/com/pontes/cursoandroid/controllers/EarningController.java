@@ -39,4 +39,27 @@ public class EarningController {
 
         return total;
     }
+
+    public static float getMonth(int month){
+        Calendar date = Calendar.getInstance();
+        int year = date.get(Calendar.YEAR);
+        float total = 0.0f;
+
+        Realm realm = Realm.getDefaultInstance();
+        realm.beginTransaction();
+
+        RealmResults<Earning> earnings = realm.where(Earning.class).
+                equalTo("month", month).
+                equalTo("year", year).
+                equalTo("consolidated", true).findAll();
+
+        for (int i = 0; i < earnings.size(); i++) {
+            total += earnings.get(i).getValue();
+        }
+
+        realm.commitTransaction();
+        realm.close();
+
+        return total;
+    }
 }

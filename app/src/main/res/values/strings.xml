@@ -68,6 +68,7 @@
     <string name="installment_header">Parcelamentos</string>
     <string name="installment_value_dialog">Valor da parcela</string>
     <string name="installment_amount_dialog">Número de parcelas</string>
+    <string name="earning_header">Ganhos</string>
 
     <string-array name="expense_category">
         <item>Lazer</item>

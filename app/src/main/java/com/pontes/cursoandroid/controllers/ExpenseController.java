@@ -41,4 +41,27 @@ public class ExpenseController {
 
         return total;
     }
+
+    public static float getMonth(int month){
+        Calendar date = Calendar.getInstance();
+        int year = date.get(Calendar.YEAR);
+        float total = 0.0f;
+
+        Realm realm = Realm.getDefaultInstance();
+        realm.beginTransaction();
+
+        RealmResults<Expense> expenses = realm.where(Expense.class).
+                equalTo("month", month).
+                equalTo("year", year).
+                equalTo("consolidated", true).findAll();
+
+        for (int i = 0; i < expenses.size(); i++) {
+            total += expenses.get(i).getValue();
+        }
+
+        realm.commitTransaction();
+        realm.close();
+
+        return total;
+    }
 }
