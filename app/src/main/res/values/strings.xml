@@ -63,6 +63,11 @@
     <string name="bill_new_btn">Nova conta a pagar</string>
     <string name="bill_new_conta">Adicionar nova conta</string>
     <string name="bill_item_pay">Pagar</string>
+    <string name="installment_list_new">Criar novo parcelamento</string>
+    <string name="installment_list_header">Parcelamentos</string>
+    <string name="installment_header">Parcelamentos</string>
+    <string name="installment_value_dialog">Valor da parcela</string>
+    <string name="installment_amount_dialog">Número de parcelas</string>
 
     <string-array name="expense_category">
         <item>Lazer</item>
